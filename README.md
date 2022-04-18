@@ -17,4 +17,5 @@ https://chlist.sitechco.ru/project/30753/checklist
 newman
 
 newman run https://www.getpostman.com/collections/cb0cea0af1467c8008fb --environment env.json --iteration-data data.csv --globals globals.json --timeout-request 5000
+
 newman run c:\test1.json --reporters cli,html,json,junit --reporter-json-export jsonOut.json --reporter-junit-export xmlOut.xml --reporter-html-export htmlOut.html
