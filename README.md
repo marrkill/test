@@ -12,6 +12,10 @@ https://chlist.sitechco.ru/project/30753/checklist
 4. UPDATE
 5. DELETE
 
+Собирается стэк
+1.  jira/ситичко/redmine/confluense - баг трекинг, воркфлоу, чек листы, тест кейсы, тест планы, дока
+2. Swagger/postman/firecamp - api + покрытие тестами + прогоны и тд, websocket
+3. Python + framework - авто
 
 
 newman
