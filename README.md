@@ -23,3 +23,8 @@ newman
 newman run https://www.getpostman.com/collections/cb0cea0af1467c8008fb --environment env.json --iteration-data data.csv --globals globals.json --timeout-request 5000
 
 newman run c:\test1.json --reporters cli,html,json,junit --reporter-json-export jsonOut.json --reporter-junit-export xmlOut.xml --reporter-html-export htmlOut.html
+
+
+У меня так работает, зап3уск консоли из папки с файлами
+
+newman run https://www.getpostman.com/collections/b52ec9311c37b9fbbcca --globals workspace.postman_globals.json
