@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "23c41ef8-7534-4a9f-bbe1-41372a1b83af",
+		"name": "POST_Case(1-3)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CASE(1-3)-Add a new pet to the store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"POST - Case № \"+pm.iterationData.get(\"Number_case_CSV\")+\" - check post_expected_result_all = post_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.iterationData.get(\"Pet_ID_CSV\")));\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.iterationData.get(\"Category_ID_CSV\")));\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.iterationData.get(\"Category_name_CSV\"));\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"Pet_name_CSV\"));\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.iterationData.get(\"Tags_ID_1_CSV\")));\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.iterationData.get(\"Tags_name_1_CSV\"));\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.iterationData.get(\"Tags_ID_2_CSV\")));\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.iterationData.get(\"Tags_name_2_CSV\"));\r",
+							"    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"Pet_status_CSV\"));\r",
+							"});\r",
+							"// Если список \"Check post_expected_result_all = post_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_id = response_body_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.iterationData.get(\"Pet_ID_CSV\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_id = response_body_category_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.iterationData.get(\"Category_ID_CSV\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_name = response_body_category_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.iterationData.get(\"Category_name_CSV\"));    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_name = response_body_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"Pet_name_CSV\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_1 = response_body_tags_id_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.iterationData.get(\"Tags_ID_1_CSV\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_1 = response_body_tags_name_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.iterationData.get(\"Tags_name_1_CSV\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_2 = response_body_tags_id_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.iterationData.get(\"Tags_ID_2_CSV\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_2 = response_body_tags_name_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.iterationData.get(\"Tags_name_2_CSV\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_pet_status = response_body_pet_status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(pm.iterationData.get(\"Pet_status_CSV\"));\r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{Pet_ID_CSV}},\r\n  \"category\": {\r\n    \"id\": {{Category_ID_CSV}},\r\n    \"name\": \"{{Category_name_CSV}}\"\r\n  },\r\n  \"name\": \"{{Pet_name_CSV}}\",\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{Tags_ID_1_CSV}},\r\n      \"name\": \"{{Tags_name_1_CSV}}\"\r\n    },\r\n        {\r\n      \"id\": {{Tags_ID_2_CSV}},\r\n      \"name\": \"{{Tags_name_2_CSV}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{Pet_status_CSV}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Pet by ID in Case(1-3)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete Pet in Case № \"+pm.iterationData.get(\"Number_case_CSV\")+\" - Check delete_expected_result_all = delete_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"    pm.expect(parseInt(jsonData.message)).to.eql(pm.iterationData.get(\"Pet_ID_CSV\"));\r",
+							"});\r",
+							"// Если список \"Check delete_expected_result_all = delete_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_code = response_body_code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"Check expected_type = response_body_type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"});\r",
+							"pm.test(\"Check expected_message = response_body_message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(parseInt(jsonData.message)).to.eql(pm.iterationData.get(\"Pet_ID_CSV\"));\r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{Pet_ID_CSV}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{Pet_ID_CSV}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
