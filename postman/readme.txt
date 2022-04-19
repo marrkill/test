@@ -18,3 +18,8 @@ newman run https://www.getpostman.com/collections/d2bf8857707779662848 --globals
 1. При изменении структуры в body в POST - не могу пока сделать через один файлик и один прогон
 2. POST_Case_4 - создание {} пустого объекта - поле ID надо проверять на непустоту
 3. МБ вынести все глобалки в документ, тогда не будут работать 2 папки кейсов POST
+
+
+newman run https://www.getpostman.com/collections/cb0cea0af1467c8008fb --environment env.json --iteration-data data.csv --globals globals.json --timeout-request 5000
+
+newman run c:\test1.json --reporters cli,html,json,junit --reporter-json-export jsonOut.json --reporter-junit-export xmlOut.xml --reporter-html-export htmlOut.html
