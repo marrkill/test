@@ -1,0 +1,4 @@
+Pet_ID_CSV,Category_ID_CSV,Category_name_CSV,Pet_name_CSV,Tags_ID_1_CSV,Tags_name_1_CSV,Tags_ID_2_CSV,Tags_name_2_CSV,Pet_status_CSV,Number_case_CSV
+10000,10001,cat,pup,10002,long,10003,red,available,1
+555,999,dog,pip,14,smile,1,asd,error,2
+10010,10009,Кошка,Пушок,1002,Длинная,3,Красная,Свободная,3

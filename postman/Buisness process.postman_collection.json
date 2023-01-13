@@ -1,0 +1,511 @@
+{
+	"info": {
+		"_postman_id": "41379e9f-b865-41e8-a339-c585aa41d1ad",
+		"name": "Buisness process",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a new pet to the store",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check post_expected_result_all = post_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"Pet_ID\")));\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.globals.get(\"Category_ID\")));\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.globals.get(\"Category_name\"));\r",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"Pet_name\"));\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_1\")));\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.globals.get(\"Tags_name_1\"));\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_2\")));\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.globals.get(\"Tags_name_2\"));\r",
+							"    pm.expect(jsonData.status).to.eql(pm.globals.get(\"Pet_status\"));\r",
+							"});\r",
+							"// Если список \"Check post_expected_result_all = post_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_id = response_body_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"Pet_ID\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_id = response_body_category_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.globals.get(\"Category_ID\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_name = response_body_category_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.globals.get(\"Category_name\"));    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_name = response_body_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"Pet_name\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_1 = response_body_tags_id_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_1\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_1 = response_body_tags_name_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.globals.get(\"Tags_name_1\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_2 = response_body_tags_id_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_2\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_2 = response_body_tags_name_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.globals.get(\"Tags_name_2\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_pet_status = response_body_pet_status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(pm.globals.get(\"Pet_status\"));\r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{Pet_ID}},\r\n  \"category\": {\r\n    \"id\": {{Category_ID}},\r\n    \"name\": \"{{Category_name}}\"\r\n  },\r\n  \"name\": \"{{Pet_name}}\",\r\n  \"tags\": [\r\n    {\r\n      \"id\": {{Tags_ID_1}},\r\n      \"name\": \"{{Tags_name_1}}\"\r\n    },\r\n        {\r\n      \"id\": {{Tags_ID_2}},\r\n      \"name\": \"{{Tags_name_2}}\"\r\n    }\r\n  ],\r\n  \"status\": \"{{Pet_status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pet by ID Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check get_expected_result_all = get_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"Pet_ID\")));\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.globals.get(\"Category_ID\")));\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.globals.get(\"Category_name\"));\r",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"Pet_name\"));\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_1\")));\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.globals.get(\"Tags_name_1\"));\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_2\")));\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.globals.get(\"Tags_name_2\"));\r",
+							"    pm.expect(jsonData.status).to.eql(pm.globals.get(\"Pet_status\"));\r",
+							"});\r",
+							"// Если список \"Check get_expected_result_all = get_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_id = response_body_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"Pet_ID\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_id = response_body_category_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.globals.get(\"Category_ID\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_name = response_body_category_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.globals.get(\"Category_name\"));    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_name = response_body_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"Pet_name\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_1 = response_body_tags_id_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_1\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_1 = response_body_tags_name_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.globals.get(\"Tags_name_1\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_2 = response_body_tags_id_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_2\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_2 = response_body_tags_name_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.globals.get(\"Tags_name_2\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_pet_status = response_body_pet_status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(pm.globals.get(\"Pet_status\"));\r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{Pet_ID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{Pet_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pet by ID Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Check upd_expected_result_all = upd_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"    pm.expect(jsonData.message).to.eql(pm.globals.get(\"Pet_ID\"));\r",
+							"});\r",
+							"// Если список \"Check upd_expected_result_all = upd_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_code = response_body_code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"Check expected_type = response_body_type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"});\r",
+							"pm.test(\"Check expected_message = response_body_message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(pm.globals.get(\"Pet_ID\"));\r",
+							"});\r",
+							"*/\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "{{Pet_name_upd}}",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "{{Pet_status_upd}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{Pet_ID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{Pet_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "After UPD - Get Pet by ID Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check get_after_upd_expected_result_all = get_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"Pet_ID\")));\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.globals.get(\"Category_ID\")));\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.globals.get(\"Category_name\"));\r",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"Pet_name_upd\"));\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_1\")));\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.globals.get(\"Tags_name_1\"));\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_2\")));\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.globals.get(\"Tags_name_2\"));\r",
+							"    pm.expect(jsonData.status).to.eql(pm.globals.get(\"Pet_status_upd\"));\r",
+							"});\r",
+							"// Если список \"Check get_after_upd_expected_result_all = get_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_id = response_body_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(parseInt(pm.globals.get(\"Pet_ID\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_id = response_body_category_id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.id).to.eql(parseInt(pm.globals.get(\"Category_ID\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_category_name = response_body_category_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.category.name).to.eql(pm.globals.get(\"Category_name\"));    \r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_name = response_body_name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.globals.get(\"Pet_name_upd\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_1 = response_body_tags_id_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_1\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_1 = response_body_tags_name_1\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[0].name).to.eql(pm.globals.get(\"Tags_name_1\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_id_2 = response_body_tags_id_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].id).to.eql(parseInt(pm.globals.get(\"Tags_ID_2\")));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_tags_name_2 = response_body_tags_name_2\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.tags[1].name).to.eql(pm.globals.get(\"Tags_name_2\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_pet_status = response_body_pet_status\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(pm.globals.get(\"Pet_status_upd\"));\r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{Pet_ID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{Pet_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Pet by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check delete_expected_result_all = delete_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"    pm.expect(jsonData.message).to.eql(pm.globals.get(\"Pet_ID\"));\r",
+							"});\r",
+							"// Если список \"Check delete_expected_result_all = delete_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_code = response_body_code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});\r",
+							"pm.test(\"Check expected_type = response_body_type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.type).to.eql(\"unknown\");\r",
+							"});\r",
+							"pm.test(\"Check expected_message = response_body_message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(pm.globals.get(\"Pet_ID\"));\r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/{{Delete_Pet_ID}}",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"{{Delete_Pet_ID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "After DELETE - Get Pet by ID Pet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Check get_after_delete_expected_result_all = get_response_body_all\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.response.to.have.status(404);\r",
+							"    pm.expect(jsonData.code).to.eql(1);\r",
+							"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+							"    pm.expect(jsonData.message).to.eql(\"Pet not found\");\r",
+							"\r",
+							"});\r",
+							"// Если список \"Check get_after_delete_expected_result_all = get_response_body_all\" не отработал - убрать /**/ и запустить еще раз - детальный отчет\r",
+							"/*\r",
+							"pm.test(\"Expected status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_code = response_body_code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_type = response_body_type\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check expected_message = response_body_message\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Pet not found\"); \r",
+							"});\r",
+							"*/"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/54567567",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"54567567"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
